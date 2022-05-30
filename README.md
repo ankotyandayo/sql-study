@@ -16,11 +16,66 @@ SELECT ENAME,JOB,SAL FROM EMP ORDER BY SAL
 
 ３集合関数
 
-#SUM	引数の総和を求める。NULLの場合は集計対象外
-#MAX	引数の最大値を求める。
-#MIN	引数の最小値を求める。
-#AVG	引数の平均値を求める。NULLの場合は集計対象外。
-#COUNT	引数の値の総数を求める。NULLの場合は集計対象外。COUNT(*)と記載可。
+SELECT SUM(SAL),MAX(SAL),MIN(SAL),AVG(SAL),COUNT(SAL) FROM EMP
+
+http://sql.main.jp/sql06.html
+
+４範囲指定
+
+SELECT ENAME,SAL FROM EMP  WHERE SAL >= 1000 AND SAL <= 2000
+
+http://sql.main.jp/sql07.html
+
+５パターン検索
+
+SELECT ENAME,SAL FROM EMP WHERE ENAME LIKE '%A%' 
+
+http://sql.main.jp/sql08.html
+
+６グループ化（GROUP BY）
+
+SELECT DEPTNO,AVG(SAL) FROM EMP GROUP BY DEPTNO
+
+http://sql.main.jp/sql09.html
+
+７グループ化したテーブルの条件抽出（HAVING）
+
+SELECT DEPTNO,COUNT(*) FROM EMP GROUP BY DEPTNO HAVING COUNT(*) >= 4
+
+SELECT JOB,MIN(SAL),MAX(SAL),AVG(SAL) FROM EMP GROUP BY JOB HAVING MAX(SAL) >= 2000
+
+http://sql.main.jp/sql10.html
+
+８重複行の排除（DISTINCT）
+
+SELECT DISTINCT JOB FROM EMP 
+
+http://sql.main.jp/sql11.html
+
+９レコードの追加 INSERT文
+
+INSERT INTO	EMP (EMPNO,NAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO)
+VALUES	(9999,'SAN','SALESMAN',7698,1981-09-28,1000,500,10)
+
+
+INSERT INTO	EMP_TEMP
+SELECT	*
+FROM	EMP
+WHERE	JOB = 'SALESMAN'
+
+http://sql.main.jp/sql12.html
+
+１０レコードの更新 UPDATE文
+
+UPDATE	表名
+SET	列名 = 値,列名 = 値...
+WHERE	条件
+
+UPDATE	EMP
+SET	SAL = SAL * 1.5
+WHERE	EMPNO = 7369
+
+http://sql.main.jp/sql13.html
 
 
 
